@@ -30,13 +30,13 @@ exports.getById = (req, res) => {
 exports.update = (req, res) => {
     Board.findOneAndUpdate(req.params.boardId, {$set: req.body}, (err, result) => {
         if (err) return next(err);
-        res.status(200).send(result)
+        res.status(200).send(req.body)
 	})
 }
 
 exports.delete = (req, res) => {
     Board.findOneAndDelete(req.params.boardId, (err) => {
         if (err) return next(err);
-        res.send('Deleted successfully!')
+        res.send({message: "Board deleted successfully"})
     })
 }
